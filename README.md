@@ -1,19 +1,21 @@
 # Nushell <!-- omit in toc -->
 [![Crates.io](https://img.shields.io/crates/v/nu.svg)](https://crates.io/crates/nu)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/nushell/nushell/ci.yml?branch=main)](https://github.com/nushell/nushell/actions)
-[![Nightly Build](https://github.com/nushell/nushell/actions/workflows/nightly-build.yml/badge.svg)](https://github.com/nushell/nushell/actions/workflows/nightly-build.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/quake-build/nushell/ci.yml?branch=main)](https://github.com/quake-build/nushell/actions)
+[![Nightly Build](https://github.com/quake-build/nushell/actions/workflows/nightly-build.yml/badge.svg)](https://github.com/quake-build/nushell/actions/workflows/nightly-build.yml)
 [![Discord](https://img.shields.io/discord/601130461678272522.svg?logo=discord)](https://discord.gg/NtAbbGn)
 [![The Changelog #363](https://img.shields.io/badge/The%20Changelog-%23363-61c192.svg)](https://changelog.com/podcast/363)
 [![@nu_shell](https://img.shields.io/badge/twitter-@nu_shell-1DA1F3?style=flat-square)](https://twitter.com/nu_shell)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nushell/nushell)](https://github.com/nushell/nushell/graphs/commit-activity)
 [![GitHub contributors](https://img.shields.io/github/contributors/nushell/nushell)](https://github.com/nushell/nushell/graphs/contributors)
 
-A new type of shell.
+A new type of shell, forked for [quake](https://github.com/quake-build/quake) development (see [details](#quake-fork)).
 
 ![Example of nushell](assets/nushell-autocomplete6.gif "Example of nushell")
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Quake Fork](#quake-fork)
+  - [Updating Quake](#updating-quake)
 - [Status](#status)
 - [Learning About Nu](#learning-about-nu)
 - [Installation](#installation)
@@ -26,6 +28,20 @@ A new type of shell.
 - [Officially Supported By](#officially-supported-by)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Quake Fork
+
+The purpose of this fork is primarily to adapt and optimize Nushell for [quake](https://github.com/quake-build/quake), with the intention of upstreaming changes as appropriate.
+
+The `main` branch is generally kept up-to-date with [upstream Nushell](https://github.com/nushell/nushell), with the addition of custom changes merged via PRs on this repository off of feature branches. In the event that such a change is upstreamed, `main` may be rebased with a force push in order to deduplicate any commits. As this may result in orphaned commits, it is recommended that you *do not* rely upon this repository for your own use (see below section for how this is mitigated internally).
+
+Note that, although during development quake may often use a in-development version of nushell, releases of quake are tied to a specific nushell version.
+
+### Updating Quake
+
+The process of updating `main` to upstream nushell is manually performed on a periodic or as-needed basis.
+
+When the submodule inside quake is updated to a particular commit, the tag `quake-ref-<commit>` (where `<commit>` is the short hash of the updating commit inside quake) is added to the referenced commit in this repository. In addition, a `quake-<version>` tag is added to that commit on every quake release. In addition to useful metadata this provides, this also solves the aforementioned issue of orphaned commits, as each tag ensures the commit will always be referenced, so that tools like `git-bisect` will work well into quake's history.
 
 ## Status
 
