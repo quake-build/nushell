@@ -34,6 +34,20 @@ impl Argument {
             Argument::Spread(e) => e.span,
         }
     }
+
+    pub fn expression(&self) -> Option<&Expression> {
+        match self {
+            Argument::Positional(e) | Argument::Unknown(e) | Argument::Spread(e) => Some(e),
+            Argument::Named((_, _, e)) => e.as_ref(),
+        }
+    }
+
+    pub fn expression_mut(&mut self) -> Option<&mut Expression> {
+        match self {
+            Argument::Positional(e) | Argument::Unknown(e) | Argument::Spread(e) => Some(e),
+            Argument::Named((_, _, e)) => e.as_mut(),
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
